@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class player : MonoBehaviour
 {
     private float distanceToGround;
     public Animator anim;
+    private NavMeshAgent myAgent;
 
     // Start is called before the first frame update
     void Start()
     {
-        distanceToGround = GetComponent<Collider>().bounds.extents.y;
+        distanceToGround = GetComponentInChildren<Collider>().bounds.extents.y;
+        myAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -18,21 +21,24 @@ public class player : MonoBehaviour
     {
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, distanceToGround + .05f);
 
-        //if (Input.GetKey(KeyCode.Space) && isGrounded)
-        //{
-        //    GetComponent<Rigidbody>().AddForce(Vector3.up*200);
-        //}
+        if (Input.GetKey(KeyCode.Space))
+        {
+            //GetComponentInChildren<Rigidbody>().AddForce(Vector3.up*50);
+            anim.SetTrigger("Jump");
+        }
 
-        float rotation = Input.GetAxis("Horizontal") * 240;
-        float translation = Input.GetAxis("Vertical") * 5;
-        rotation *= Time.deltaTime;
-        translation *= Time.deltaTime;
-        transform.Rotate(0, rotation, 0);
-        transform.Translate(0, 0, translation);
+        // create a raycast hit object
+        RaycastHit hit;
+        // create a ray object to the point where the player clicked
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (isGrounded) { anim.SetFloat("Speed", Mathf.Abs(translation * 20)); }
-        else { anim.SetFloat("Speed", 0); }
-         
-        //GetComponent<Rigidbody>().AddForce(Vector3.forward * );
+        anim.SetFloat("Speed", myAgent.velocity.magnitude);
+
+        // check if the player clicked on something
+        if (Input.GetMouseButton(0) && Physics.Raycast(ray, out hit))
+        {
+            // set nav mesh to move towards the point the player clicked
+            myAgent.destination = hit.point;
+        }
     }
 }
