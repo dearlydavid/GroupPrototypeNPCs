@@ -4,24 +4,14 @@ using UnityEngine;
 
 public class QuestItem : MonoBehaviour
 {
+    [HideInInspector]
     public bool itemCollected;
-    public npc questGiver;
+    public quest questGiver;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // if the item is collided with, the quest is active, and the playe has not already turned in the quest set the quest item to be collected
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && questGiver.questActive)
+        if (other.tag == "Player" && questGiver.questActive && !questGiver.awarded)
         {
             itemCollected = true;
         }

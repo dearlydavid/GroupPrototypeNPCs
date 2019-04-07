@@ -1,0 +1,71 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.AI;
+
+public class quest : MonoBehaviour
+{
+    [HideInInspector]
+    public bool questActive;
+    [HideInInspector]
+    public bool awarded;
+
+    [Tooltip("Needs to be either 3 or 4 at this point; 3 if another quest follows, 4 if there is no following quest")]
+    public string[] dialogue;
+
+    [HideInInspector]
+    public int currentIdx = 0;
+
+    [Tooltip("List of possible items that can complete the quest")]
+    public QuestItem[] itemList;
+    [Tooltip("Should be between 1 and the length of the Item List")]
+    public int numRequired;
+
+    [HideInInspector]
+    public string currentText;
+
+    void Start()
+    {
+        currentText = dialogue[currentIdx];
+    }
+
+    public void checkStatus()
+    {
+        if (!questActive)
+        {
+            questActive = true;
+        }
+        else if (questActive && !awarded)
+        {
+            currentIdx = 1;
+            int check = 0;
+            foreach (QuestItem item in itemList)
+            {
+                if (item.itemCollected)
+                {
+                    item.gameObject.SetActive(false);
+                    check++;
+                }
+            }
+
+            if (check >= numRequired)
+            {
+                giveReward();
+                awarded = true;
+            }
+        }
+        setText();
+    }
+
+    public void giveReward()
+    {
+        currentIdx = 2;
+        setText();
+    }
+
+    public void setText()
+    {
+        currentText = dialogue[currentIdx];
+    }
+}
