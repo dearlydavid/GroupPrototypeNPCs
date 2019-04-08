@@ -25,9 +25,12 @@ public class quest : MonoBehaviour
     [HideInInspector]
     public string currentText;
 
+    public QuestItem reward;
+
     void Start()
     {
         currentText = dialogue[currentIdx];
+        reward.gameObject.SetActive(false);
     }
 
     public void checkStatus()
@@ -51,7 +54,6 @@ public class quest : MonoBehaviour
 
             if (check >= numRequired)
             {
-                giveReward();
                 awarded = true;
             }
         }
@@ -60,6 +62,11 @@ public class quest : MonoBehaviour
 
     public void giveReward()
     {
+        if(reward != null)
+        {
+            reward.gameObject.SetActive(true);
+            reward.gameObject.GetComponent<Transform>().SetPositionAndRotation(GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
+        }
         currentIdx = 2;
         setText();
     }

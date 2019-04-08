@@ -82,18 +82,27 @@ public class npc : MonoBehaviour
                 talking = true;
             }
 
-            if (questList[questIndex].awarded && Input.GetKey(KeyCode.Space))
+            if (questList[questIndex].awarded)
             {
-                if (questIndex < questList.Length - 1)
+                if (questList[questIndex].currentIdx == 1)
                 {
-                    questIndex++;
+                    questList[questIndex].giveReward();
+                    QuestText.GetComponent<Text>().text = questList[questIndex].currentText;
                 }
-                else
+
+                if (Input.GetKey(KeyCode.Space))
                 {
-                    questList[questIndex].currentIdx = 3;
+                    if (questIndex < questList.Length - 1)
+                    {
+                        questIndex++;
+                    }
+                    else
+                    {
+                        questList[questIndex].currentIdx = 3;
+                    }
+                    questList[questIndex].checkStatus();
+                    QuestText.GetComponent<Text>().text = questList[questIndex].currentText;
                 }
-                questList[questIndex].checkStatus();
-                QuestText.GetComponent<Text>().text = questList[questIndex].currentText;
             }
 
             // turn npc to look at player
