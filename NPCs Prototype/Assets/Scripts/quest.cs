@@ -12,6 +12,7 @@ public class quest : MonoBehaviour
     public bool awarded;
 
     [Tooltip("Needs to be either 3 or 4 at this point; 3 if another quest follows, 4 if there is no following quest")]
+    [TextArea(3,10)]
     public string[] dialogue;
 
     [HideInInspector]

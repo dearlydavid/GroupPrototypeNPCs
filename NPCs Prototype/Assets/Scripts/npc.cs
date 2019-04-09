@@ -11,6 +11,7 @@ public class npc : MonoBehaviour
     private int currentWaypoint; // index of the waypoint list to check where the npc is currently going to
     private bool talking; // used to check if the npc is currently talking
     public GameObject QuestText; // text box to show the npc's request
+    public Animator animator; //animator for the dialogue boxes
 
     public bool isMover = false;
 
@@ -77,6 +78,7 @@ public class npc : MonoBehaviour
                 // play talking animation, marks npcs current state, and shows thier dialouge text
                 GetComponentInChildren<Animator>().SetTrigger("Talk");
                 questList[questIndex].checkStatus();
+               // animator.SetBool("isFOpen", true); //Doesn't seem to be working, its supposed to raise the dialogue boxes but it doesn't allow the code to work.
                 QuestText.GetComponent<Text>().text = questList[questIndex].currentText;
                 QuestText.SetActive(true);
                 talking = true;
@@ -119,6 +121,7 @@ public class npc : MonoBehaviour
             GetComponentInChildren<Animator>().SetTrigger("StopTalking");
             talking = false;
             QuestText.SetActive(false);
+           // animator.SetBool("isFOpen", false); //not seeming to work here, should just activate the animation for the dialogue to pop up on the s
         }
     }
 
