@@ -253,10 +253,14 @@ MonoBehaviour:
   questActive: 0
   awarded: 0
   dialogue:
-  - Hey twerp, Mom says you have to help me get berries.
-  - There are super forbidden berries or boring bland berries.
-  - Thanks twerp
-  - Good job, twerp
+  - Hehe hey Sage. I found some really nice berries in this secret back path that
+    goes out of the safe zone. Think you can get them for me? I won't tell Mom where
+    you got them from, don't worry hehe. Well, if you choose not to there are always
+    other, less awesome berries that are nearby.
+  - Either bring me the special berries from the back or lame berries from around
+    here.
+  - Hehe, thanks Sage. Hehehe
+  - Hehe
   currentIdx: 0
   itemList:
   - {fileID: 2029529962}
@@ -16242,10 +16246,14 @@ MonoBehaviour:
   questActive: 0
   awarded: 0
   dialogue:
-  - heloo
-  - hi
-  - great
-  - good
+  - Oh, good morning Sage! Can you be a sweetie and go help your Rowan and your Dad
+    with their chores?
+  - Let me know when you've helped Rowan and Dad!
+  - Awww my cute wittle baby all gwown up and hewping out!
+  - Since you've been so good, I'll cook your favorite food tonight! Humans!
+  - SIKE! Rowan told me he saw you leave the safe zone. As proof, he showed me those
+    berries you dropped on your way back! You're going into timeout for the rest of
+    the day with no dinner and no toys!
   currentIdx: 0
   itemList:
   - {fileID: 352063996}
