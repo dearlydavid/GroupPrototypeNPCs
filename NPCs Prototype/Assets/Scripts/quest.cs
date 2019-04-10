@@ -6,9 +6,9 @@ using UnityEngine.AI;
 
 public class quest : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public bool questActive;
-    [HideInInspector]
+    //[HideInInspector]
     public bool awarded;
 
     [Tooltip("Needs to be either 3 or 4 at this point; 3 if another quest follows, 4 if there is no following quest")]

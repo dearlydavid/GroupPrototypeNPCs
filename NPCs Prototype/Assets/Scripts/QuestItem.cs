@@ -15,5 +15,6 @@ public class QuestItem : MonoBehaviour
         {
             itemCollected = true;
         }
+        
     }
 }
