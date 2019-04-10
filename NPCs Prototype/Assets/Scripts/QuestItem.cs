@@ -15,6 +15,7 @@ public class QuestItem : MonoBehaviour
     {
         if (other.tag == "Player" && questGiver.questActive && !questGiver.awarded)
         {
+            GetComponent<AudioSource>().Play();
             itemCollected = true;
         }
         

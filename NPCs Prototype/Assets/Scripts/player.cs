@@ -8,10 +8,14 @@ public class player : MonoBehaviour
     private float distanceToGround;
     public Animator anim;
     private NavMeshAgent myAgent;
+    public AudioSource jump;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        jump = GetComponent<AudioSource>();
         distanceToGround = GetComponentInChildren<Collider>().bounds.extents.y;
         myAgent = GetComponent<NavMeshAgent>();
     }
@@ -24,7 +28,9 @@ public class player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             //GetComponentInChildren<Rigidbody>().AddForce(Vector3.up*50);
+            
             anim.SetTrigger("Jump");
+            jump.Play(34100);
         }
 
         // create a raycast hit object

@@ -18,9 +18,13 @@ public class npc : MonoBehaviour
     public quest[] questList;
     private int questIndex = 0;
 
+    public AudioSource voice;
+
     // Start is called before the first frame update
     void Start()
     {
+        voice = GetComponent<AudioSource>();
+
         //setting up navmesh agent and turning off box tracker by default
         myAgent = GetComponent<NavMeshAgent>();
         myAgent.destination = waypoints[currentWaypoint].transform.position;
@@ -83,6 +87,7 @@ public class npc : MonoBehaviour
                 QuestText.SetActive(true);
                 talking = true;
                 popOpen();
+
             }
 
             if (questList[questIndex].awarded)
@@ -129,6 +134,7 @@ public class npc : MonoBehaviour
     void popOpen()
     {
         animator.SetBool("isOpen", true);
+        voice.Play();
     }
 
     void popDown()

@@ -50,6 +50,7 @@ public class quest : MonoBehaviour
                 if (item.itemCollected)
                 {
                     item.gameObject.SetActive(false);
+                    GetComponent<AudioSource>().Play();
                     check++;
                 }
             }
