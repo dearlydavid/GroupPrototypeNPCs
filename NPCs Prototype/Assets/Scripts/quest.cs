@@ -44,6 +44,7 @@ public class quest : MonoBehaviour
         {
             currentIdx = 1;
             int check = 0;
+
             foreach (QuestItem item in itemList)
             {
                 if (item.itemCollected)
@@ -65,10 +66,28 @@ public class quest : MonoBehaviour
     {
         if(reward != null)
         {
+
+            foreach (QuestItem item in itemList)
+            {
+                if (!item.good)
+                {
+                    reward.good = false;
+                }
+            }
+
+
+            if(reward.good = false)
+            {
+                currentIdx = 3;
+            }
+            else
+            {
+                currentIdx = 2;
+            }
+
             reward.gameObject.SetActive(true);
             reward.gameObject.GetComponent<Transform>().SetPositionAndRotation(GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
         }
-        currentIdx = 2;
         setText();
     }
 

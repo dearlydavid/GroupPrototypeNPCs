@@ -8,6 +8,8 @@ public class QuestItem : MonoBehaviour
     public bool itemCollected;
     public quest questGiver;
 
+    public bool good;
+
     // if the item is collided with, the quest is active, and the playe has not already turned in the quest set the quest item to be collected
     private void OnTriggerEnter(Collider other)
     {

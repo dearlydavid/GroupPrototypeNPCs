@@ -67,6 +67,7 @@ public class npc : MonoBehaviour
     //triggered when the playe is standing in the talking trigger box for this npc
     void OnTriggerStay(Collider other)
     {
+        print("enter");
         if (other.tag == "Player")
         {
             // makes npc stand still
@@ -100,7 +101,7 @@ public class npc : MonoBehaviour
                     }
                     else
                     {
-                        questList[questIndex].currentIdx = 3;
+                        questList[questIndex].currentIdx = questList[questIndex].currentIdx + 1;
                     }
                     questList[questIndex].checkStatus();
                     QuestText.GetComponent<Text>().text = questList[questIndex].currentText;
