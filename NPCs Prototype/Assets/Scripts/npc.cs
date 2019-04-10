@@ -78,10 +78,10 @@ public class npc : MonoBehaviour
                 // play talking animation, marks npcs current state, and shows thier dialouge text
                 GetComponentInChildren<Animator>().SetTrigger("Talk");
                 questList[questIndex].checkStatus();
+               // animator.SetBool("isFOpen", true); //Doesn't seem to be working, its supposed to raise the dialogue boxes but it doesn't allow the code to work.
                 QuestText.GetComponent<Text>().text = questList[questIndex].currentText;
                 QuestText.SetActive(true);
                 talking = true;
-                popOpen();
             }
 
             if (questList[questIndex].awarded)
@@ -121,17 +121,8 @@ public class npc : MonoBehaviour
             GetComponentInChildren<Animator>().SetTrigger("StopTalking");
             talking = false;
             QuestText.SetActive(false);
-            popDown();
+           // animator.SetBool("isFOpen", false); //not seeming to work here, should just activate the animation for the dialogue to pop up on the s
         }
     }
 
-    void popOpen()
-    {
-        animator.SetBool("isOpen", true);
-    }
-
-    void popDown()
-    {
-        animator.SetBool("isOpen", false);
-    }
 }
